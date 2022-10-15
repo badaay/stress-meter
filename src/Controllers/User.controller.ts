@@ -1,23 +1,22 @@
-import User,{ IUser } from '../Models/User.model';
+import { UserModel, UserModelInterface } from '../Models/User.model'
 interface ICreateUserInput {
-    email: IUser['email'];
-    name: IUser['name'];
+    email: UserModelInterface['email'];
+    name: UserModelInterface['name'];
 }
 async function CreateUser({
     email,
     name
-  }: ICreateUserInput): Promise<IUser> {
-    return User.create({
-      email,
-      name
-    })
-      .then((data: IUser) => {
-        return data;
-      })
-      .catch((error: Error) => {
-        throw error;
-      });
-  }
-  export default {
-    CreateUser
-  };
+}: ICreateUserInput): Promise<UserModelInterface> {
+
+  const user = new UserModel({email, name})
+  await user.save()
+
+  return user
+}
+async function ListUser() {
+  return UserModel.find()
+}
+
+export default {
+  CreateUser, ListUser
+};
