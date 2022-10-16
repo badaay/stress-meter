@@ -15,6 +15,7 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 app.post("/user", async (req: Request, res: Response) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { name, email} = req.body
   const user = await UserController.CreateUser({
     name: name,
