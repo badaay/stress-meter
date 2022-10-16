@@ -1,4 +1,7 @@
 {
+  "name": "stress-level",
+  "version": "1.0.0",
+  "description": "application that can record stress level from user",
   "devDependencies": {
     "@types/express": "^4.17.14",
     "@types/mongodb": "^3.6.20",
@@ -17,6 +20,14 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "start": "node ./dist/index.js",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/index.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "14.19.1"
   }
 }
